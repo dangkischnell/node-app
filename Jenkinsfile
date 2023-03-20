@@ -25,7 +25,7 @@ pipeline {
 
       steps {
           withCredentials([
-            usernamePassword(credentialsId: '63715168--45f2-a269-873208bf331e', passwordVariable: 'AWS_SECRET', usernameVariable: 'AWS_KEY'),
+            usernamePassword(credentialsId: '63715168-c881-45f2-a269-873208bf331e', passwordVariable: 'AWS_SECRET', usernameVariable: 'AWS_KEY'),
           ]) {
             sh '''
                rm -rf node-app-terraform
