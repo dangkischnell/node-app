@@ -19,7 +19,7 @@ pipeline {
     stage('AWS Deployment') {
       agent {
         docker {
-          image ' docker pull hashicorp/terraform:latest'
+          image 'hashicorp/terraform:latest'
         }
       }
 
