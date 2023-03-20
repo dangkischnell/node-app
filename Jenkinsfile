@@ -28,11 +28,11 @@ pipeline {
             usernamePassword(credentialsId: '63715168--45f2-a269-873208bf331e', passwordVariable: 'AWS_SECRET', usernameVariable: 'AWS_KEY'),
           ]) {
             sh '''
-               rm -rf node-app-terraform'
+               rm -rf node-app-terraform
                git clone https://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@github.com/dangkischnell/node-app.git
                cd node-app-terraform
                terraform init        
-               terraform apply -auto-approve -var access_key=${AWS_KEY} -var secret_key=${AWS_SECRET}'
+               terraform apply -auto-approve -var access_key=${AWS_KEY} -var secret_key=${AWS_SECRET}
                git add terraform.tfstate
                git -c user.name="Shashwat Tripathi" -c user.email="shashwat2691@gmail.com" commit -m "terraform state update from Jenkins"
                git push https://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@github.com/dangkischnell/node-app.git master
