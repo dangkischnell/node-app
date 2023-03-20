@@ -18,7 +18,7 @@ pipeline {
       steps {
           withCredentials([
             usernamePassword(credentialsId: '63715168-c881-45f2-a269-873208bf331e', passwordVariable: 'AWS_SECRET', usernameVariable: 'AWS_KEY'),
-            sshUserPrivateKey(credentialsId: 'github_ssh'),
+          //  sshUserPrivateKey(credentialsId: 'github_ssh'),
           ]) {
             sh 'echo Test AwS deployment'
             // sh 'rm -rf node-app-terraform'
