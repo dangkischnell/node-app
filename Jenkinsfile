@@ -19,26 +19,25 @@ pipeline {
     stage('AWS Deployment') {
       agent {
         docker {
-          image 'hashicorp/terraform:latest'
+          image 'jess/terraform:latest'
         }
       }
 
       steps {
           withCredentials([
             usernamePassword(credentialsId: '63715168-c881-45f2-a269-873208bf331e', passwordVariable: 'AWS_SECRET', usernameVariable: 'AWS_KEY'),
-          //  sshUserPrivateKey(credentialsId: 'github_ssh'),
+            sshUserPrivateKey(credentialsId: 'github_ssh', keyFileVariable: 'SSH_KEY')
           ]) {
-            sh 'echo Test AwS deployment'
             sh 'rm -rf node-app-terraform'
-            sh 'git clone https://github.com/goforgold/node-app-terraform.git'
+            sh 'GIT_SSH_COMMAND="ssh -i $SSH_KEY" git clone git@github.com:dangkischnell/node-app-terraform.git'
             sh '''
                cd node-app-terraform
                terraform init
                terraform apply -auto-approve -var access_key=${AWS_KEY} -var secret_key=${AWS_SECRET}
-              //  git add terraform.tfstate
-              //  git -c user.name="Shashwat Tripathi" -c user.email="shashwat2691@gmail.com" commit -m "terraform state update from Jenkins"
-              //  git push git@github.com:dangkischnell/node-app-terraform.git master
-            // '''
+               git add terraform.tfstate
+               git -c user.name="Shashwat Tripathi" -c user.email="shashwat2691@gmail.com" commit -m "terraform state update from Jenkins"
+               sh 'GIT_SSH_COMMAND="ssh -i $SSH_KEY" git push git@github.com:dangkischnell/node-app-terraform.git master
+            '''
         }
       }
     }
