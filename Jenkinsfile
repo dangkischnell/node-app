@@ -1,11 +1,13 @@
 pipeline {
-  agent {
-    docker {
-      image 'jeduoliveira/terraform-packer-aws-alpine:latest'
-    }
-  }
+  agent none
+
   stages {
     stage('Create Packer AMI') {
+        agent {
+          docker {
+            image 'jeduoliveira/terraform-packer-aws-alpine:latest'
+          }
+        }
         steps {
           withCredentials([
             usernamePassword(credentialsId: '63715168-c881-45f2-a269-873208bf331e', passwordVariable: 'AWS_SECRET', usernameVariable: 'AWS_KEY')
@@ -15,6 +17,12 @@ pipeline {
       }
     }
     stage('AWS Deployment') {
+      agent {
+        docker {
+          image ' docker pull hashicorp/terraform:latest'
+        }
+      }
+
       steps {
           withCredentials([
             usernamePassword(credentialsId: '63715168-c881-45f2-a269-873208bf331e', passwordVariable: 'AWS_SECRET', usernameVariable: 'AWS_KEY'),
