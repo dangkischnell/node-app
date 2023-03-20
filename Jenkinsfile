@@ -37,7 +37,7 @@ pipeline {
                git -c user.name="dawefd" -c user.email="ffff@gmail.com" commit -m "terraform state update from Jenkins"               
             '''
             }
-            sh 'git push https://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@github.com/dangkischnell/node-app-terraform.git master'          
+            // sh 'git push https://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@github.com/dangkischnell/node-app-terraform.git master'          
     }
   }
  } 
