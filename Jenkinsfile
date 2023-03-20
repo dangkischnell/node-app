@@ -1,5 +1,8 @@
 pipeline {
   agent none
+  environment {
+    GITHUB_TOKEN = credentials('github_personal_token')
+  }
 
   stages {
     stage('Create Packer AMI') {
@@ -37,8 +40,11 @@ pipeline {
                git -c user.name="dawefd" -c user.email="ffff@gmail.com" commit -m "terraform state update from Jenkins"               
             '''
             }
-            sh 'git remote add origin https://dangkischnell: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@github.com/dangkischnell/node-app-terraform.git'
-            sh 'git push https://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@github.com/dangkischnell/node-app-terraform.git master'          
+            withCredentials([
+              string(credentialsId: 'github_personal_token', variable: 'GITHUB_TOKEN'),
+              ]) {
+                  sh 'git push https://${GITHUB_TOKEN}@github.com/dangkischnell/node-app-terraform.git master'       
+              }   
     }
   }
  } 
