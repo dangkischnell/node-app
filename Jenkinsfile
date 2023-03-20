@@ -19,7 +19,7 @@ pipeline {
     stage('AWS Deployment') {
       agent {
         docker {
-          image 'jess/terraform:latest'
+          image 'ksandermann/cloud-toolbox:latest'
         }
       }
 
