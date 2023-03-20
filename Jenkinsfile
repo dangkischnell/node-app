@@ -1,9 +1,5 @@
 pipeline {
   agent none
-  environment {
-    GITHUB_TOKEN = credentials('github_personal_token')
-  }
-
   stages {
     stage('Create Packer AMI') {
         agent {
