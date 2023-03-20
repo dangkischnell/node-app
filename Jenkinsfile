@@ -43,6 +43,8 @@ pipeline {
             withCredentials([
               string(credentialsId: 'github_personal_token', variable: 'GITHUB_TOKEN'),
               ]) {
+                  sh 'git remote remove origin'
+                  sh 'git remote add origin https://dangkischnell:${GITHUB_TOKEN}@github.com/dangkischnell/node-app-terraform.git'
                   sh 'git push https://${GITHUB_TOKEN}@github.com/dangkischnell/node-app-terraform.git master'       
               }   
     }
