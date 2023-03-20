@@ -19,7 +19,7 @@
     },
     {
       "type": "file",
-      "source": "bin/",
+      "source": "bin",
       "destination": "/home/ubuntu/node-app/"
     },
     {
