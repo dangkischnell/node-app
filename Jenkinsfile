@@ -17,7 +17,7 @@ pipeline {
     stage('AWS Deployment') {
       steps {
           withCredentials([
-            usernamePassword(credentialsId: 'ada90a34-30ef-47fb-8a7f-a97fe69ff93f', passwordVariable: 'AWS_SECRET', usernameVariable: 'AWS_KEY'),
+            usernamePassword(credentialsId: '63715168-c881-45f2-a269-873208bf331e', passwordVariable: 'AWS_SECRET', usernameVariable: 'AWS_KEY'),
             sshUserPrivateKey(credentialsId: 'github_ssh'),
           ]) {
             sh 'rm -rf node-app-terraform'
