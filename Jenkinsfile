@@ -9,7 +9,7 @@ pipeline {
         }
         steps {
           withCredentials([
-            usernamePassword(credentialsId: '63715168-c881-45f2-a269-873208bf331e', passwordVariable: 'AWS_SECRET', usernameVariable: 'AWS_KEY')
+            usernamePassword(credentialsId: '5b307ba4-4d64-454e-a137-b063ba12e7b8', passwordVariable: 'AWS_SECRET', usernameVariable: 'AWS_KEY')
           ]) {
             sh 'packer build -var aws_access_key=${AWS_KEY} -var aws_secret_key=${AWS_SECRET} packer/packer.json'
         }
@@ -24,7 +24,7 @@ pipeline {
 
       steps {
           withCredentials([
-            usernamePassword(credentialsId: '63715168-c881-45f2-a269-873208bf331e', passwordVariable: 'AWS_SECRET', usernameVariable: 'AWS_KEY'),
+            usernamePassword(credentialsId: '5b307ba4-4d64-454e-a137-b063ba12e7b8', passwordVariable: 'AWS_SECRET', usernameVariable: 'AWS_KEY'),
             string(credentialsId: 'github_personal_token', variable: 'GITHUB_TOKEN'),
           ]) {
             sh '''
